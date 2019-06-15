@@ -3,7 +3,7 @@
 FROM python:3 as builder
 
 # Install Camoco
-RUN pip install numpy
+RUN pip install numpy scipy==1.2.*
 RUN pip install camoco camoco-cob
 
 # Setup the user
