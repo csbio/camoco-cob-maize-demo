@@ -1,0 +1,19 @@
+[Unit]
+Description=Cob Server Container
+After=docker.service
+Requires=docker.service
+ 
+[Service]
+TimeoutStartSec=0
+Restart=always
+RestartSec=30
+StartLimitInterval=400
+StartLimitBurst=5
+# Enable this line to auto update remote image on restart
+#ExecStartPre=/usr/bin/docker pull cob
+ExecStart=/bin/bash -c "/usr/bin/docker run --rm --name cob-cont \
+    --publish 127.0.0.1:50000:50000 \
+    cob"
+ 
+[Install]
+WantedBy=multi-user.target
